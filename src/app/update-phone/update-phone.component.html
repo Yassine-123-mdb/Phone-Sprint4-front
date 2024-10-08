@@ -1,0 +1,64 @@
+<div class="container">
+    <div>
+      <h2>Modifier un Téléphone :</h2>
+    </div>
+    <form>
+      <!-- ID du téléphone -->
+      <div  class="col-sm-2 col-md-2 col-lg-2">
+        <label>ID Téléphone</label>
+        <input readonly type="text" [(ngModel)]="currentPhone.id" name="id" class="form-control">
+      </div>
+  
+      <!-- Couleur du téléphone -->
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Couleur Téléphone</label>
+        <input type="text" [(ngModel)]="currentPhone.couleur" name="couleur" class="form-control">
+      </div>
+  
+      <!-- Marque du téléphone -->
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Marque Téléphone</label>
+        <input type="text" [(ngModel)]="currentPhone.marque" name="marque" class="form-control">
+      </div>
+  
+      <!-- Prix du téléphone -->
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>Prix Téléphone</label>
+        <input type="number" [(ngModel)]="currentPhone.prix" name="prix" class="form-control">
+      </div>
+  
+      <!-- RAM du téléphone -->
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>RAM Téléphone (Go)</label>
+        <input type="number" [(ngModel)]="currentPhone.ram" name="ram" class="form-control">
+      </div>
+  
+      <!-- Stockage du téléphone -->
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>Stockage Téléphone (Go)</label>
+        <input type="number" [(ngModel)]="currentPhone.stockage" name="stockage" class="form-control">
+      </div>
+  
+      <!-- Date de création -->
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Date de création</label>
+        <input type="date" [ngModel]="currentPhone.dateCreation | date: 'yyyy-MM-dd'" 
+               (ngModelChange)="currentPhone.dateCreation = $event" name="date_creation" class="form-control">
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Type</label>
+        <select class="form-control form-control-lg" id="id_type" name="id_type"
+        [(ngModel)]="updatedTypId">
+        <option *ngFor="let typ of types" [value]="typ.idType" >
+        {{typ.nomType}}
+        </option>
+        </select>
+        </div>
+
+      <!-- Bouton pour modifier -->
+      <div class="mt-2">
+        <button type="button" (click)="updatePhone()" class="btn btn-success">Modifier</button>
+      </div>
+    </form>
+  </div>
+  

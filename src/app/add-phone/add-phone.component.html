@@ -1,0 +1,53 @@
+<div class="container">
+    <div>
+      <h2>Ajouter un Téléphone :</h2>
+    </div>
+  
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Téléphone</label>
+      <input type="text" [(ngModel)]="newPhone.id" name="id" class="form-control">
+    </div>
+    
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Marque</label>
+      <input type="text" [(ngModel)]="newPhone.marque" name="marque" class="form-control">
+    </div>
+    
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Couleur</label>
+      <input type="text" [(ngModel)]="newPhone.couleur" name="couleur" class="form-control">
+    </div>
+    
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix</label>
+      <input type="number" [(ngModel)]="newPhone.prix" name="prix" class="form-control">
+    </div>
+    
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>RAM (Go)</label>
+      <input type="number" [(ngModel)]="newPhone.ram" name="ram" class="form-control">
+    </div>
+    
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Stockage (Go)</label>
+      <input type="number" [(ngModel)]="newPhone.stockage" name="stockage" class="form-control">
+    </div>
+    
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date de Création</label>
+      <input type="date" [(ngModel)]="newPhone.dateCreation" name="dateCreation" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Type</label>
+      <select class="form-control form-control-lg" id="id_type" name="id_type"
+      [(ngModel)]="newIdTyp">
+       <option *ngFor="let typ of types" [value]="typ.idType" >
+       {{typ.nomType}}
+      </option>
+      </select>
+      </div>
+    <div class="mt-2">
+      <button type="submit" (click)="addPhones()"  class="btn btn-success">Ajouter</button>
+    </div>
+  </div>
+  

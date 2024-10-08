@@ -1,0 +1,46 @@
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2 mt-2 ">
+  <label>Nom Produit en tapant</label>
+  <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+  </div>
+  </form>
+  
+  
+<div class="container">
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Marque</th>
+              <th>Couleur</th>
+              <th>Ram</th>
+              <th>Stockage</th>
+              <th>Prix</th>
+              <th>Date Création</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let phone of phones  ">
+            <tr>
+              <td>{{ phone.id }}</td>
+              <td>{{ phone.marque }}</td>
+              <td>{{ phone.couleur }}</td>
+              <td>{{ phone.ram }}</td>
+              <td>{{ phone.stockage }}</td>
+              <td>{{ phone.prix }}</td>
+              <td>{{ phone.dateCreation | date:'dd/MM/yyyy' }}</td>
+              <td>{{ phone.type?.nomType }}</td>
+              <td>
+                <a class="btn btn-danger" (click)="supprimerPhone(phone)">Supprimer</a>
+                <a class="btn btn-success" [routerLink]="['/update-phone', phone.id]">Modifier</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
