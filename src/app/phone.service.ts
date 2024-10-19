@@ -4,6 +4,7 @@ import { Type } from './model/type.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TypeWrapper } from './model/TypeWrapper';
+import { AuthService } from './auth/auth.service';
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 @Injectable({
@@ -13,33 +14,52 @@ export class PhoneService {
   apiURL: string = 'http://localhost:8082/phones/api';
   apiURLTyp: string = 'http://localhost:8082/phones/typ';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private authService: AuthService  ) {}
 
   listePhones(): Observable<Phone[]> {
-    return this.http.get<Phone[]>(this.apiURL);
+    /*let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})*/
+    return this.http.get<Phone[]>(this.apiURL+"/all");
   }
 
   ajouterPhone(phon: Phone): Observable<Phone> {
-    return this.http.post<Phone>(this.apiURL, phon, httpOptions);
-  }
-
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.post<Phone>(this.apiURL+"/addphon", phon, {headers:httpHeaders});
+}
   supprimerPhone(id: number) {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.delete(url, httpOptions);
-  }
+    const url = `${this.apiURL}/delphon/${id}`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.delete(url, {headers:httpHeaders});
+    }
 
   consulterPhone(id: number): Observable<Phone> {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.get<Phone>(url);
-  }
+    const url = `${this.apiURL}/getbyid/${id}`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get<Phone>(url,{headers:httpHeaders});
+    }
+    
 
   updatePhone(phon: Phone): Observable<Phone> {
-    return this.http.put<Phone>(this.apiURL, phon, httpOptions);
-  }
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.put<Phone>(this.apiURL+"/updateprod", phon, {headers:httpHeaders});
+    }
 
   listeTypes(): Observable<TypeWrapper> {
-    return this.http.get<TypeWrapper>(this.apiURLTyp);
-  }
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get<TypeWrapper>(this.apiURLTyp,{headers:httpHeaders}
+    );
+    } 
   
 
   rechercherParType(idTyp: number): Observable<Phone[]> {

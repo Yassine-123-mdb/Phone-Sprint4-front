@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Phone } from '../model/phone.model';
 import { Type } from '../model/type.model';
 import { PhoneService } from '../phone.service';
-
+import { PhonesComponent } from '../phones/phones.component';
 @Component({
   selector: 'app-recherche-par-type',
   templateUrl: './recherche-par-type.component.html',

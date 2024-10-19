@@ -9,16 +9,12 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'PhoneProject';
   constructor (public authService: AuthService, private router :Router) {}
-  ngOnInit() {
-    let isloggedin: string;
-    let loggedUser: string;
-    isloggedin = localStorage.getItem('isloggedIn')!;
-    loggedUser = localStorage.getItem('loggedUser')!;
-    if (isloggedin != "true" || !loggedUser)
-      this.router.navigate(['/login']);
-    else
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
-  }
+  ngOnInit () {
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+     this.authService.isTokenExpired())
+    this.router.navigate(['/login']);
+    }
 
   onLogout(){
     this.authService.logout();

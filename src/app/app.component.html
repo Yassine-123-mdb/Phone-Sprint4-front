@@ -21,7 +21,7 @@
 <div class="dropdown-menu">
 <a *ngIf="authService.isAdmin()"  class="dropdown-item" [routerLink]="['Add_phones']">Ajouter</a>
 <a class="dropdown-item" href="#">Lister</a>
-<a class="dropdown-item" [routerLink]="['/listeTypes']" >Gestion des Types</a>
+<a *ngIf="authService.isAdmin()" class="dropdown-item" [routerLink]="['/listeTypes']" >Gestion des Types</a>
 <a class="dropdown-item" [routerLink]="['/rechercheParType']" >Recherche Par Type</a>
 <a class="dropdown-item" [routerLink]="['/rechercheParMarque']" >Recherche Par Marque</a>
 

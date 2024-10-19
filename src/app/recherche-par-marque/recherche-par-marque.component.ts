@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PhoneService } from '../phone.service';
 import { Phone } from '../model/phone.model'; // Import Phone model
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-recherche-par-marque',
@@ -13,7 +14,7 @@ export class RechercheParMarqueComponent {
   allPhones! : Phone[];
   searchTerm!: string;
 
-  constructor(private phoneService: PhoneService) {}
+  constructor(private phoneService: PhoneService ,public authService: AuthService) {}
   ngOnInit(): void {
     this.phoneService.listePhones().subscribe(prods => {
     console.log(prods);

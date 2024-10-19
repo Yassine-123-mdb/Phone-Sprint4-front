@@ -27,8 +27,8 @@
             <td>{{ phone.type?.nomType }}</td>
             <td><a *ngIf="authService.isAdmin()"
               class="btn btn-danger" (click)="supprimerPhone(phone)">Supprimer</a></td>
-              <td><a *ngIf="authService.isAdmin()" class="btn btnsuccess" [routerLink]="['/updateProduit',phone.id]">Modifier</a></td>
-          </tr>
+         <td><a *ngIf="authService.isAdmin()"
+              class="btn btn-success" [routerLink]="['/update-phone',phone.id]">Modifier</a></td></tr>
         </tbody>
       </table>
     </div>

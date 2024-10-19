@@ -33,10 +33,10 @@
               <td>{{ phone.prix }}</td>
               <td>{{ phone.dateCreation | date:'dd/MM/yyyy' }}</td>
               <td>{{ phone.type?.nomType }}</td>
-              <td>
-                <a class="btn btn-danger" (click)="supprimerPhone(phone)">Supprimer</a>
-                <a class="btn btn-success" [routerLink]="['/update-phone', phone.id]">Modifier</a>
-              </td>
+              <!--<td><a *ngIf="authService.isAdmin()"
+                class="btn btn-danger" (click)="supprimerPhone(phone)">Supprimer</a></td>
+           <td><a *ngIf="authService.isAdmin()"
+                class="btn btn-success" [routerLink]="['/updatePhone',phone.id]">Modifier</a></td>-->
             </tr>
           </tbody>
         </table>

@@ -8,7 +8,7 @@ import { PhonesComponent } from './phones/phones.component';
 import { FormsModule } from '@angular/forms';
 import { AddPhoneComponent } from './add-phone/add-phone.component';
 import { UpdatePhoneComponent } from './update-phone/update-phone.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { RechercheParTypeComponent } from './recherche-par-type/recherche-par-type.component';
 import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
 import { SearchFilterPipe } from './search-filter.pipe';
@@ -17,6 +17,8 @@ import { ListeTypesComponent } from './liste-types/liste-types.component';
 import { UpdateTypesComponent } from './update-types/update-types.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { TokenInterceptor } from './token.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,11 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     
     
   ],
-  providers: [],
+  providers: [{ provide : HTTP_INTERCEPTORS,
+    useClass : TokenInterceptor,
+    multi : true}
+     ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }

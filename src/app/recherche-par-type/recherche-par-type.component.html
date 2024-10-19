@@ -1,12 +1,14 @@
-<div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-  <label>Types</label>
-  <select class="form-control form-control-lg" id="idType" name="idType"
-          [(ngModel)]="IdType" (change)="onChange()">
-    <option *ngFor="let typ of types" [value]="typ.idType">
-      {{ typ.nomType }}
-    </option>
-  </select>
-</div>
+<div class="container">
+
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4"> 
+      <label>Categories </label> 
+      <select class="form-control form-control-lg"   id="idCat" name="idCat"
+       [(ngModel)]="IdType" (change)="onChange()">
+        <option *ngFor="let cat of types" value="{{cat.idType}}">
+             {{cat.nomType}} 
+       </option>
+  </select> 
+ </div>
 
 <div class="container">
   <div class="card shadow mb-4">
@@ -35,10 +37,10 @@
             <td>{{ phone.prix }}</td>
             <td>{{ phone.dateCreation | date: 'dd/MM/yyyy' }}</td>
             <td>{{ phone.type?.nomType }}</td>
-            <td>
+            <!--<td>
               <a class="btn btn-danger" (click)="supprimerPhone(phone)">Supprimer</a>
               <a class="btn btn-success" [routerLink]="['/update-phone', phone.id]">Modifier</a>
-            </td>
+            </td>-->
           </tr>
         </tbody>
       </table>
