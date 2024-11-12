@@ -10,19 +10,24 @@ import { AuthService } from '../auth/auth.service';
 })
 export class PhonesComponent implements OnInit {
   phones: Phone[] = []; // Initialize the phones array
-
+  src = "{{produit.imageStr}}"
   constructor(private phoneService : PhoneService,
     public authService: AuthService) { }
   ngOnInit(): void {
     this.chargerPhones(); // Load phones when the component initializes
   }
 
-  chargerPhones() {
+  chargerPhones(){
     this.phoneService.listePhones().subscribe(prods => {
-      console.log(prods);
-      this.phones = prods; // Assign the response to the phones array
+    this.phones = prods;
+    
+    this.phones.forEach((prod) => {
+    if(prod.images.length!=0){
+    prod.imageStr = 'data:' + prod!.images[0]!.type + ';base64,' +
+    prod!.images[0]!.image;}
     });
-  }
+    });
+    }
 
   supprimerPhone(p: Phone) {
     let conf = confirm("Etes-vous sûr ?");

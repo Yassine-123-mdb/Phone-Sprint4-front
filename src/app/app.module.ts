@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { PhonesComponent } from './phones/phones.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPhoneComponent } from './add-phone/add-phone.component';
 import { UpdatePhoneComponent } from './update-phone/update-phone.component';
 import { HttpClientModule,HTTP_INTERCEPTORS  } from '@angular/common/http';
@@ -18,7 +18,10 @@ import { UpdateTypesComponent } from './update-types/update-types.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { TokenInterceptor } from './token.interceptor';
-
+import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { TokenInterceptor } from './token.interceptor';
     ListeTypesComponent,
     UpdateTypesComponent,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    RegisterComponent,
+    VerifEmailComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,9 @@ import { TokenInterceptor } from './token.interceptor';
     FormsModule,
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     
     
   ],

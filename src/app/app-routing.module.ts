@@ -9,6 +9,8 @@ import { ListeTypesComponent } from './liste-types/liste-types.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { PhoneGuard } from './guard/phone.guard';
+import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
 const routes: Routes = [
   { path: 'phones', component: PhonesComponent },
 
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path: "listeTypes", component : ListeTypesComponent},
   {path: "login", component : LoginComponent},
   {path: "app-forbidden", component : ForbiddenComponent},
+  {path:'register',component:RegisterComponent},
   {path : "Add_phones", component : AddPhoneComponent, canActivate:[PhoneGuard]},
+  { path: 'verifEmail', component: VerifEmailComponent },
 
 
 

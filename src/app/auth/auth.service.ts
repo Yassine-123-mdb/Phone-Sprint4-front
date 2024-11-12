@@ -14,7 +14,7 @@ export class AuthService {
 /*  users: User[] = [{"username":"admin","password":"123","roles":['ADMIN']},
                    {"username":"yassine","password":"123","roles":['USER']} ]; */
 
- private helper = new JwtHelperService();
+private helper = new JwtHelperService();
 
 apiURL: string = 'http://localhost:8085/users';
 token!:string;
@@ -22,17 +22,32 @@ token!:string;
 public loggedUser!:string;
 public isloggedIn: Boolean = false;
 public roles!:string[];
+public regitredUser : User = new User();
 
   constructor(private router : Router,
               private http : HttpClient
 ) { }
 
+  setRegistredUser(user : User){
+  this.regitredUser=user;
+  }
+  getRegistredUser(){
+  return this.regitredUser;
+  }
+
+  validateEmail(code : string){
+    return this.http.get<User>(this.apiURL+'/verifyEmail/'+code);
+    }
+    
   login(user : User)
   {
   return this.http.post<User>(this.apiURL+'/login', user , {observe:'response'});
   
   }
- 
+  registerUser(user :User){
+    return this.http.post<User>(this.apiURL+'/register', user,
+    {observe:'response'});
+    }
   saveToken(jwt:string){
     localStorage.setItem('jwt',jwt);
     this.token = jwt;
