@@ -1,22 +1,28 @@
-import { Component ,OnInit } from '@angular/core';
-import { AuthService } from './auth/auth.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {KeycloakService} from "keycloak-angular";
+import {KeycloakProfile} from "keycloak-js";
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+selector: 'app-root',
+templateUrl: './app.component.html',
+styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'PhoneProject';
-  constructor (public authService: AuthService, private router :Router) {}
-  ngOnInit () {
-    this.authService.loadToken();
-    if (this.authService.getToken()==null ||
-     this.authService.isTokenExpired())
-    this.router.navigate(['/login']);
-    }
-
-  onLogout(){
-    this.authService.logout();
-  }
+export class AppComponent implements OnInit{
+title = 'agular_Keycloak_depart';
+public profile? : KeycloakProfile;
+constructor(public keycloakService : KeycloakService) {
+}
+ngOnInit() {
+let res = this.keycloakService.isLoggedIn();
+if (res)
+this.keycloakService.loadUserProfile().then(profile=>{this.profile=profile;
+});
+}
+onLogout() {
+this.keycloakService.logout(window.location.origin);
+}
+async onLogin() {
+await this.keycloakService.login({
+redirectUri: window.location.origin
+});
+}
 }

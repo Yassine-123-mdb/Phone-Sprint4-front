@@ -60,11 +60,14 @@ export class UpdatePhoneComponent implements OnInit {
               }
             });}
             
-    updatePhone() {
-      this.currentPhone.type = this.types.find(typ => typ.idType == this.updatedTypId)!;
-      this.phoneService.updatePhone(this.currentPhone).subscribe((phon) => {
-      this.router.navigate(['phones']); }
-      );
-      }
+            updatePhone() {
+              this.currentPhone.type = this.types.find(typ => typ.idType == this.updatedTypId)!;
+              if (this.isImageUpdated) {
+                this.onAddImagePhone();
+              }
+              this.phoneService.updatePhone(this.currentPhone).subscribe(() => {
+                this.router.navigate(['phones']);
+              });
+            }
       
 }

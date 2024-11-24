@@ -55,7 +55,7 @@ export class PhoneService {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({"Authorization":jwt})
-    return this.http.put<Phone>(this.apiURL+"/updateprod", phon, {headers:httpHeaders});
+    return this.http.put<Phone>(this.apiURL+"/updatephon", phon, {headers:httpHeaders});
     }
 
   listeTypes(): Observable<TypeWrapper> {
@@ -93,11 +93,11 @@ export class PhoneService {
         return this.http.get<Image>(url);
         }
 
-
-        uploadImagePhon(file: File, filename: string, idProd:number): Observable<any>{
+ 
+        uploadImagePhon(file: File, filename: string, id:number): Observable<any>{
           const imageFormData = new FormData();
           imageFormData.append('image', file, filename);
-          const url = `${this.apiURL + '/image/uplaodImagePhon'}/${idProd}`;
+          const url = `${this.apiURL + '/image/uplaodImagePhon'}/${id}`;
           return this.http.post(url, imageFormData);
        }
           

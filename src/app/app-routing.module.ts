@@ -11,8 +11,9 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { PhoneGuard } from './guard/phone.guard';
 import { RegisterComponent } from './register/register.component';
 import { VerifEmailComponent } from './verif-email/verif-email.component';
+import { AuthGuard } from './guards/secure.guard';
 const routes: Routes = [
-  { path: 'phones', component: PhonesComponent },
+  {path: "phones", component : PhonesComponent,canActivate:[AuthGuard],data : {roles:['ADMIN']}},
 
   {path: "update-phone/:id", component: UpdatePhoneComponent},
   {path: "rechercheParType", component : RechercheParTypeComponent},
